@@ -86,7 +86,7 @@ public class SQLTestDAO implements TestDAO {
 	@Override
 	public boolean saveQuestion(String title, Question question) throws DAOException {
 
-		// не ругаться, все находится в режиме доработки!
+		// не ругаться, все находится в режиме доработки! эти строки будут вынесены отсюда куда надо позже!
 		
 		String SQL_ID = "SET @id = LAST_INSERT_ID();";
 		String INSERT_QUESTION_TEXT = "INSERT INTO test_questions (text, tests_id) VALUE (?,?)";
