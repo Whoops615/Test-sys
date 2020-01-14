@@ -22,8 +22,20 @@
 
 	<h4><c:out value="${menuright1}" /></h4>
 
-			<form action="authorization"><button type="submit"><c:out value="${menuright3}" /></button></form>
-			<form action="registration"><button type="submit"><c:out value="${menuright4}" /></button></form>
+			
+			
+				<form action="Controller" method="post">
+		<input type="hidden" name="command" value="go_to_registration_page">		
+		<button type="submit"><c:out value="${menuright4}" /></button>	
+	</form>
+	<form action="Controller" method="post">
+		<input type="hidden" name="command" value="go_to_authorization_page">
+		<button type="submit"><c:out value="${menuright3}" /></button>	
+	</form>
+			
+			
+			
+			
 
 			<form action="Controller" method="post">
 				<input type="hidden" name="command" value="logout">

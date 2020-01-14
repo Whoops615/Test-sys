@@ -108,6 +108,31 @@ public final class ConnectionPool {
 		return connection;
 
 	}
+	
+	public void closeConnection( PreparedStatement ps, ResultSet rs) {
+
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+
+		} catch (SQLException e) {
+			// log
+		}
+		try {
+
+			if (ps != null) {
+				ps.close();
+			}
+
+		} catch (SQLException e) {
+			// log
+		}
+		
+
+	}
+	
+	
 
 	public void closeConnection(Connection con, Statement st, ResultSet rs) {
 
@@ -123,6 +148,36 @@ public final class ConnectionPool {
 
 			if (st != null) {
 				st.close();
+			}
+
+		} catch (SQLException e) {
+			// log
+		}
+		try {
+			if (con != null) {
+				con.close();
+			}
+
+		} catch (SQLException e) {
+			// log
+		}
+
+	}
+	
+	public void closeConnection(Connection con, PreparedStatement ps, ResultSet rs) {
+
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+
+		} catch (SQLException e) {
+			// log
+		}
+		try {
+
+			if (ps != null) {
+				ps.close();
 			}
 
 		} catch (SQLException e) {
@@ -159,6 +214,37 @@ public final class ConnectionPool {
 	}
 
 	public void closeConnection(Connection con) {
+		try {
+			if (con != null) {
+				con.close();
+			}
+		} catch (SQLException e) {
+			// log
+		}
+	}
+	
+	public void closeConnection(Connection con, PreparedStatement ps1, PreparedStatement ps2, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			// log
+		}
+		try {
+			if (ps1 != null) {
+				ps1.close();
+			}
+		} catch (SQLException e) {
+			// log
+		}
+		try {
+			if (ps2 != null) {
+				ps2.close();
+			}
+		} catch (SQLException e) {
+			// log
+		}
 		try {
 			if (con != null) {
 				con.close();

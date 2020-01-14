@@ -5,18 +5,15 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -9209859791480390895L;
-	
-	
+
 	private int id;
 	private String email;
-
 	private String role;
-
 	private String name;
 	private String surname;
-	
+
 	public User() {
-		
+
 	}
 
 	public int getId() {
@@ -57,6 +54,10 @@ public class User implements Serializable {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -110,7 +111,5 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }

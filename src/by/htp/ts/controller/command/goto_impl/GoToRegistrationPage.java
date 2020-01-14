@@ -6,16 +6,26 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import by.htp.ts.bean.RequestInfo;
 import by.htp.ts.controller.command.Command;
-import by.htp.ts.controller.command.constant.PageAddress;
+import by.htp.ts.controller.constant.Transition;
 
 public class GoToRegistrationPage implements Command {
+	
+	private RequestInfo requestInfo = new RequestInfo();
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher disp = request.getRequestDispatcher(PageAddress.PAGE_REGISTRATION);
+		
+		String url = Transition.PAGE_REGISTRATION;
+		HttpSession session = request.getSession(true);
+		requestInfo.setUrl(url);
+		session.setAttribute("requestInfo", requestInfo);
+
+		RequestDispatcher disp = request.getRequestDispatcher(url);
 		disp.forward(request, response);
 		
 	}

@@ -1,7 +1,11 @@
 package by.htp.ts.service.validator;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import by.htp.ts.bean.Answer;
+import by.htp.ts.bean.Question;
 
 public class Validator {
 
@@ -103,23 +107,29 @@ public class Validator {
 		return false;
 	}
 
-	public static boolean validAnswer(String answer, String result) {
+	public static boolean validQuestion(Question question) {
 
-		if (!answer.isEmpty()) {
-			
-			switch (result) {
-			case "true":
-				return true;
-			case "false":
-				return true;
-			default:
+		if (validTextQuestion(question.getContent()) == false) {
+			return false;
+		}
+		List<Answer> answers = question.getAnswers();
+		if (answers.isEmpty()) {
+			return false;
+		}
+		for (Answer answer : answers) {
+			if (answer.getContent() == null) {
 				return false;
 			}
 		}
+		return true;
+	}
 
+	public static boolean validUserId(int userId) {
+
+		if (userId > 0) {
+			return true;
+		}
 		return false;
 	}
-	
-
 
 }

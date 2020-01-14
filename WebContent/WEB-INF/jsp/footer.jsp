@@ -7,9 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<style>
-#footer {background-color: #ded9d9;	border: 1px solid black; margin-left: 5px; margin-top: 2px;}
-</style>
+
 
 <fmt:setLocale value="${sessionScope.local}" />
 <fmt:setBundle basename="localization.local" var="loc" />

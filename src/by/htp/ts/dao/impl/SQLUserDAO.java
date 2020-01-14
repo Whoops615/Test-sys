@@ -6,15 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import by.htp.ts.bean.User;
 import by.htp.ts.bean.UserInfo;
-import by.htp.ts.bean.UserParameter;
-import by.htp.ts.bean.creator.Creator;
+
 import by.htp.ts.dao.DAOException;
 import by.htp.ts.dao.UserDAO;
 import by.htp.ts.dao.connect_pool.ConnectionPool;
@@ -33,7 +30,7 @@ public class SQLUserDAO implements UserDAO {
 			+ "INNER JOIN user_detail ON user.user_detail_id = user_detail.id\r\n"
 			+ "INNER JOIN user_role ON user.user_role_id = user_role.id " + "WHERE user.login = ? "
 			+ "AND user.password = ?;";
-	
+
 	@Override
 	public User authorization(String login, String password) throws DAOException {
 
@@ -41,10 +38,7 @@ public class SQLUserDAO implements UserDAO {
 		Connection con = cp.takeConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		User user = null;
-
-		Map<String, Object> userParameter;
-		Creator creator = Creator.getInstance();
+		User user = new User();
 
 		try {
 			ps = con.prepareStatement(SQL_SELECT_USER);
@@ -54,15 +48,12 @@ public class SQLUserDAO implements UserDAO {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				userParameter = new HashMap<String, Object>();
-				
-				userParameter.put(UserParameter.ID.name(), rs.getInt(1));
-				userParameter.put(UserParameter.EMAIL.name(), rs.getString(2));
-				userParameter.put(UserParameter.ROLE.name(), rs.getString(3));
-				userParameter.put(UserParameter.NAME.name(), rs.getString(4));
-				userParameter.put(UserParameter.SURNAME.name(), rs.getString(5));
 
-				user = creator.createUser(userParameter);
+				user.setId(rs.getInt(1));
+				user.setEmail(rs.getString(2));
+				user.setRole(rs.getString(3));
+				user.setName(rs.getString(4));
+				user.setSurname(rs.getString(5));
 
 			} else {
 				user = null;

@@ -2,7 +2,6 @@ package by.htp.ts.bean;
 
 import java.io.Serializable;
 
-
 public class UserInfo implements Serializable {
 
 	private static final long serialVersionUID = -1242073910093608993L;
@@ -10,9 +9,7 @@ public class UserInfo implements Serializable {
 	private String login;
 	private String password;
 	private String email;
-
 	private String role;
-
 	private String name;
 	private String surname;
 
@@ -66,6 +63,10 @@ public class UserInfo implements Serializable {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
